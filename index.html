@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de catetos de triángulo rectángulo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    .container {
+      margin-top: 50px;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+    }
+    #resultado {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora de catetos de triángulo rectángulo</h2>
+    <div class="form-group">
+      <label for="hipotenusa">Hipotenusa:</label>
+      <input type="number" class="form-control" id="hipotenusa" placeholder="Ingresa la hipotenusa">
+    </div>
+    <div class="form-group">
+      <label for="angulo">Ángulo:</label>
+      <input type="number" class="form-control" id="angulo" placeholder="Ingresa el ángulo">
+    </div>
+    <button class="btn btn-primary" onclick="calcularCatetos()">Calcular</button>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularCatetos() {
+      var hipotenusa = parseFloat(document.getElementById('hipotenusa').value);
+      var angulo = parseFloat(document.getElementById('angulo').value);
+
+      if (!isNaN(hipotenusa) && !isNaN(angulo)) {
+        var cateto1 = hipotenusa * Math.sin(angulo * (Math.PI / 180));
+        var cateto2 = hipotenusa * Math.cos(angulo * (Math.PI / 180));
+
+        document.getElementById('resultado').innerHTML = `
+          <p>Cateto 1: ${cateto1.toFixed(2)}</p>
+          <p>Cateto 2: ${cateto2.toFixed(2)}</p>
+        `;
+      } else {
+        document.getElementById('resultado').innerHTML = 'Por favor, ingresa valores válidos.';
+      }
+    }
+  </script>
+</body>
+</html>
